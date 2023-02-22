@@ -1,11 +1,7 @@
 import { Shader, Engine, Color, Vector3, Texture2D, RenderQueueType, CullMode, BaseMaterial, Vector4, Vector2 } from 'oasis-engine'
 
-interface Config {
-  BaseMap: Texture2D
-}
-
 Shader.create(
-  'PlaneShader',
+  'PlaneReflectionPlaneShader',
   `
   #include <common>
   #include <common_vert>
@@ -33,15 +29,14 @@ Shader.create(
       screenUV = (screenUV+1.0)/2.0;
       screenUV.y = 1. - screenUV.y;
 
-      gl_FragColor = vec4(texture2D(_ReflectionTex, screenUV).rgb , 1.);
+      gl_FragColor = vec4(texture2D(_ReflectionTex, screenUV).rgb * vec3(0.75,0.9,0.85), 1.);
     }
 `,
 )
 
 export class PlaneMat extends BaseMaterial {
   constructor(engine: Engine) {
-    super(engine, Shader.find('PlaneShader'))
-    // this.shaderData.setTexture('_ReflectionTex',new Texture2D(engine))
+    super(engine, Shader.find('PlaneReflectionPlaneShader'))
 
     this.setState()
   }
