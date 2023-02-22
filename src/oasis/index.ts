@@ -262,9 +262,9 @@ class PlanarReflectionScript extends Script {
     reflectCamera.entity.transform.worldMatrix = currentCam.viewMatrix.clone().multiply(reflectionMatrix).invert()
 
     // todo 这一串值还是不对
-    // console.log('af1', JSON.stringify(reflectCamera.viewMatrix))
-    // console.log('af2', JSON.stringify(reflectCamera.entity.transform.worldMatrix.clone().invert()))
-    // console.log('af3', JSON.stringify(currentCam.viewMatrix.clone().multiply(reflectionMatrix)))
+    console.log('af1', JSON.stringify(reflectCamera.viewMatrix))
+    console.log('af2', JSON.stringify(reflectCamera.entity.transform.worldMatrix.clone().invert()))
+    console.log('af3', JSON.stringify(currentCam.viewMatrix.clone().multiply(reflectionMatrix)))
 
     // console.log('1', JSON.stringify(reflectCamera.entity.transform.worldMatrix.clone().invert()))
     // console.log('2', JSON.stringify(reflectCamera.viewMatrix))
@@ -320,7 +320,7 @@ class PlanarReflectionScript extends Script {
       0,
       0,
       0,
-      0,
+      1,
     )
     return reflectionMat
   }
